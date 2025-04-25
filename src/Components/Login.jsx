@@ -88,7 +88,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';
 
 const Login = () => {
-  const [form, setForm] = useState({ emailsss: '', password: '' });
+  const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
