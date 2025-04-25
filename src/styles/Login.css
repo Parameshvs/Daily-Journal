@@ -1,0 +1,111 @@
+/* Background gradient & container */
+/* Background gradient & container */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  height: 100%;
+  background: linear-gradient(135deg, #d8a7b1, #8ec5fc); /* Adjusted colors */
+  background-color: #8ec5fc;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+}
+
+.register-box {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+}
+
+.register-box h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #333;
+}
+
+.sub-text {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Form Inputs */
+form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #b2ecec;
+  border-radius: 12px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+form input:focus {
+  border-color: #8b5cf6;
+  outline: none;
+}
+
+/* Login Button */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #0f172a;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 10px;
+  transition: background 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #1e293b;
+}
+
+/* Error Text */
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* Social Buttons */
+.apple-btn,
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #f1f5f9;
+  color: #111;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.apple-btn:hover,
+.google-btn:hover {
+  background-color: #e2e8f0;
+}
+
+.apple-btn img,
+.google-btn img {
+  vertical-align: middle;
+}
