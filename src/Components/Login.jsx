@@ -1,6 +1,7 @@
+// // src/Components/Login.jsx
 // import React, { useState } from 'react';
-// import API from '../api/axios'; // Correct import of axios instance
-// import { useNavigate } from 'react-router-dom';
+// import API from '../api/axios';
+// import { useNavigate, Link } from 'react-router-dom';
 // import '../styles/Login.css';
 
 // const Login = () => {
@@ -8,31 +9,24 @@
 //   const [error, setError] = useState('');
 //   const navigate = useNavigate();
 
-//   // Handle input changes
 //   const handleChange = (e) => {
 //     setForm({ ...form, [e.target.name]: e.target.value });
 //   };
 
-//   // Handle form submission
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
 //     try {
-//       // Make the POST request to login
 //       const response = await API.post('auth/login', form);
 
-//       // Ensure the token is in the response
 //       if (response.data && response.data.token) {
-//         const token = response.data.token;
-//         console.log('Token received:', token); // Debugging line
-//         localStorage.setItem('authToken', token); // Store token in localStorage
-//         navigate('/dashboard'); // Redirect to the dashboard
+//         localStorage.setItem('authToken', response.data.token);
+//         navigate('/dashboard'); // Redirect after login
 //       } else {
-//         // If token doesn't exist in response
 //         setError('Login failed. No token received.');
 //       }
 //     } catch (err) {
 //       console.error('Login failed:', err);
-//       setError(err.response?.data?.message || 'Invalid email or password. Try again.'); // Show error message on failure
+//       setError(err.response?.data?.message || 'Invalid email or password.');
 //     }
 //   };
 
@@ -65,61 +59,81 @@
 //           {error && <p className="error-text">{error}</p>}
 //         </form>
 
-//         {/* Social login buttons */}
-//         <button className="apple-btn">
-//           <img src="/apple-logo.png" alt="Apple" width="18" />
-//           Continue with Apple
-//         </button>
-//         <button className="google-btn">
-//           <img src="/google-logo.png" alt="Google" width="18" />
-//           Continue with Google
-//         </button>
+//         <p className="toggle-link">
+//           Don't have an account? <Link to="/register">Register here</Link>
+//         </p>
 //       </div>
 //     </div>
 //   );
 // };
 
 // export default Login;
-// src/Components/Login.js
+
 
 import React, { useState } from 'react';
-import API from '../api/axios'; // Correct import of axios instance
-import { useNavigate } from 'react-router-dom';
-import '../styles/Login.css';
+import API from '../api/axios';
+import { useNavigate, Link } from 'react-router-dom';
+import '../styles/Login.css'; // Import your styles
 
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false); // for loader
   const navigate = useNavigate();
 
-  // Handle input changes
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // show loader when login starts
+
     try {
-      // Make the POST request to login
       const response = await API.post('auth/login', form);
 
-      // Ensure the token is in the response
       if (response.data && response.data.token) {
-        const token = response.data.token;
-        console.log('Token received:', token); // Debugging line
-        localStorage.setItem('authToken', token); // Store token in localStorage
-        navigate('/dashboard'); // Redirect to the dashboard
+        localStorage.setItem('authToken', response.data.token);
+
+        // wait 2 seconds, then navigate
+        setTimeout(() => {
+          navigate('/dashboard');
+        }, 2000);
       } else {
-        // If token doesn't exist in response
+        setLoading(false);
         setError('Login failed. No token received.');
       }
     } catch (err) {
       console.error('Login failed:', err);
-      setError(err.response?.data?.message || 'Invalid email or password. Try again.'); // Show error message on failure
+      setLoading(false);
+      setError(err.response?.data?.message || 'Invalid email or password.');
     }
   };
+  if (loading) {
+    return (
+      <div className="login-loader-wrapper">
+        <aside className="container-loader">
+          <div style={{ "--s": "0" }} className="aro"></div>
+          <div style={{ "--s": "1" }} className="aro"></div>
+          <div style={{ "--s": "2" }} className="aro"></div>
+          <div style={{ "--s": "3" }} className="aro"></div>
+          <div style={{ "--s": "4" }} className="aro"></div>
+          <div style={{ "--s": "5" }} className="aro"></div>
+          <div style={{ "--s": "6" }} className="aro"></div>
+          <div style={{ "--s": "7" }} className="aro"></div>
+          <div style={{ "--s": "8" }} className="aro"></div>
+          <div style={{ "--s": "9" }} className="aro"></div>
+          <div style={{ "--s": "10" }} className="aro"></div>
+          <div style={{ "--s": "11" }} className="aro"></div>
+          <div style={{ "--s": "12" }} className="aro"></div>
+          <div style={{ "--s": "13" }} className="aro"></div>
+          <div style={{ "--s": "14" }} className="aro"></div>
+          <div style={{ "--s": "15" }} className="aro"></div>
 
+        </aside>
+      </div>
+    );
+  }
   return (
     <div className="login-container">
       <div className="register-box">
@@ -149,15 +163,9 @@ const Login = () => {
           {error && <p className="error-text">{error}</p>}
         </form>
 
-        {/* Social login buttons */}
-        <button className="apple-btn">
-          <img src="/apple-logo.png" alt="Apple" width="18" />
-          Continue with Apple
-        </button>
-        <button className="google-btn">
-          <img src="/google-logo.png" alt="Google" width="18" />
-          Continue with Google
-        </button>
+        <p className="toggle-link">
+          Don't have an account? <Link to="/register">Register here</Link>
+        </p>
       </div>
     </div>
   );

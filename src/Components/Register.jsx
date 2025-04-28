@@ -13,7 +13,7 @@ const Register = () => {
     setError('');
     setForm({ name: '', email: '', password: '', terms: false });
     setIsRegister(!isRegister);
-  };
+  }
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -33,7 +33,8 @@ const Register = () => {
           name: form.name,
           email: form.email,
           password: form.password,
-        });
+        })
+        
         navigate('/login');
       } else {
         // Login request
