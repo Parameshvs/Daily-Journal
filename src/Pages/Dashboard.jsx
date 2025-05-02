@@ -102,10 +102,10 @@
 // export default Dashboard;
 
 import React, { useState, useEffect } from 'react';
-import NoteEditor from '../components/NoteEditor';
-import NotesList from '../components/NotesList';
-import TagFilter from '../components/TagFilter';
-import DateFilter from '../components/DateFilter';
+import NoteEditor from '../Components/NoteEditor';
+import NotesList from '../Components/NotesList';
+import TagFilter from '../Components/TagFilter';
+import DateFilter from '../Components/DateFilter';
 import { useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 
