@@ -5,14 +5,14 @@ import '../styles/Register.css';
 
 const Register = () => {
   const [isRegister, setIsRegister] = useState(true);
-  const [form, setForm] = useState({ name: '', email: '', password: '', terms: false });
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
+  const [form, setForm] = useState({ name: '', email: '', password: '', terms: false })
+  const [error, setError] = useState('')
+  const navigate = useNavigate()
 
   const toggleMode = () => {
     setError('');
-    setForm({ name: '', email: '', password: '', terms: false });
-    setIsRegister(!isRegister);
+    setForm({ name: '', email: '', password: '', terms: false })
+    setIsRegister(!isRegister)
   }
 
   const handleChange = (e) => {
@@ -21,7 +21,7 @@ const Register = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!form.email || !form.password || (isRegister && (!form.name || !form.terms))) {
       return setError('Please fill all required fields');
     }
@@ -34,27 +34,28 @@ const Register = () => {
           email: form.email,
           password: form.password,
         })
-        
+
         navigate('/login');
       } else {
         // Login request
         const response = await API.post('auth/login', {
           email: form.email,
           password: form.password,
-        });
+        })
 
-        if (response.data && response.data.token) {
+     if (response.data && response.data.token) {
           localStorage.setItem('authToken', response.data.token); // Store token in localStorage
           navigate('/dashboard'); // Redirect to dashboard
         } else {
-          setError('Login failed. No token received.');
+          setError('Login failed. No token received.')
         }
       }
+
     } catch (err) {
-      console.error('Authentication error:', err);
-      setError('Authentication failed. Try again.');
+      console.error('Authentication error:', err)
+      setError('Authentication failed. Try again.')
     }
-  };
+  }
 
   return (
     <div className="register-container">
@@ -63,7 +64,7 @@ const Register = () => {
 
         <div className="social-buttons">
           <button className="social-btn">f</button>
-          <button className="social-btn"></button>
+       <button className="social-btn"></button>
           <button className="social-btn">G</button>
         </div>
 
